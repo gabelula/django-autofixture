@@ -152,7 +152,7 @@ class LoremGenerator(Generator):
                 paras = ['<p>%s</p>' % p for p in paras]
             lorem = u'\n\n'.join(paras)
         if self.max_length:
-            length = random.randint(round(self.max_length / 10), self.max_length)
+            length = random.randint(round(int(self.max_length) / 10), int(self.max_length))
             lorem = lorem[:max(1, length)]
         return lorem.strip()
 
@@ -335,7 +335,7 @@ class FirstNameGenerator(Generator):
 
 class LastNameGenerator(Generator):
     """ Generates a last name """
-    
+
     surname = [
         'Smith', 'Walker', 'Conroy', 'Stevens', 'Jones', 'Armstrong',
         'Johnson', 'White', 'Stone', 'Strong', 'Olson', 'Lee', 'Forrest',
@@ -561,7 +561,7 @@ class InstanceSelector(Generator):
             return self.queryset.order_by('?')[:count]
 
 class WeightedGenerator(Generator):
-    """ 
+    """
     Takes a list of generator objects and integer weights, of the following form:
     [(generator, weight), (generator, weight),...]
     and returns a value from a generator chosen randomly by weight.
